@@ -20,7 +20,6 @@ describe("Customer Repository", () => {
         const uri = `mongodb://${host}:${port}/testdb`;
 
         mongoClient = new MongoClient(uri, { directConnection: true });
-        console.log("==> connect")
         await mongoClient.connect();
         db = mongoClient.db('testdb');
         collection = db.collection('testcollection');
