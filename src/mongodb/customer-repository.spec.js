@@ -13,13 +13,8 @@ describe("Customer Repository", () => {
     let collection;
 
     beforeAll(async () => {
-        mongodbContainer = await new MongoDBContainer('mongo:6.0.3')
-            .withExposedPorts(27017).start();
-        const host = mongodbContainer.getHost();
-        const port = mongodbContainer.getMappedPort(27017);
-        const uri = `mongodb://${host}:${port}/testdb`;
-
-        mongoClient = new MongoClient(uri, { directConnection: true });
+        mongodbContainer = await new MongoDBContainer('mongo:6.0.3').start();
+        mongoClient = new MongoClient(mongodbContainer.getConnectionString(), { directConnection: true });
         await mongoClient.connect();
         db = mongoClient.db('testdb');
         collection = db.collection('testcollection');
