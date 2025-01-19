@@ -7,7 +7,6 @@ describe("Customer Repository", () => {
     jest.setTimeout(60000);
 
     let mongodbContainer;
-    let mongoClient;
 
     beforeAll(async () => {
         mongodbContainer = await new MongoDBContainer('mongo:6.0.3').start();
